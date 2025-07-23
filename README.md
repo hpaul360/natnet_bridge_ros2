@@ -70,16 +70,13 @@ The `mocap_ros2` package provides a ROS2 node for publishing position data using
 
 Edit the parameters in the `config/mocap_ros2_params.yaml` file to customize IP, port, and other settings as needed.
 
-## License
-
-This software is released under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## Author
 - [Hannibal Paul](https://github.com/hpaul360)
   
 ## Acknowledgments
 
 The package is based on the NatNet SDK sample provided by OptiTrack.
+This project is based on work derived from the NatNet SDK by OptiTrack. Redistribution or reuse of this code may be restricted. Please contact the original copyright holder.
 
 ## Issues and Contributions
 
