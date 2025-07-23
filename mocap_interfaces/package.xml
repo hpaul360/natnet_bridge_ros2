@@ -5,7 +5,6 @@
   <version>0.1.0</version>
   <description>A ROS2 interface package for motion capture (MOCAP) messages</description>
   <maintainer email="hpaul.mail@gmail.com">Hannibal Paul</maintainer>
-  <license>MIT License</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   
