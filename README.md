@@ -1,4 +1,4 @@
-# Mocap ROS2
+# Mocap ROS2 - NatNet bridge
 
 MOCAP (NATNET protocol) position publisher in ROS2.
 
