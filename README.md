@@ -5,6 +5,8 @@ MOCAP (NATNET protocol) position publisher in ROS2.
 Connects to an IP and port running Motive and publishes all the rigid bodies set in the software, including their IDs. Edit the parameter file if required in the `config` folder.
 
 The package is based on the NatNet SDK sample: [NatNet SDK](https://optitrack.com/support/downloads/developer-tools.html#natnet-sdk).
+This project is based on work derived from the NatNet SDK by OptiTrack. Redistribution or reuse of this code may be restricted. Please contact the original copyright holder.
+
 
 ## Overview
 
