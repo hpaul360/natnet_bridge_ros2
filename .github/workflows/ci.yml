@@ -1,0 +1,30 @@
+name: ROS2 Humble CI
+
+on: [push, pull_request]
+
+jobs:
+  build_test:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup ROS2 Humble
+      uses: ros-tooling/setup-ros@v0.5
+      with:
+        distro: humble
+
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        rosdep update
+        rosdep install --from-paths src --ignore-src -r -y
+
+    - name: Build
+      run: |
+        colcon build --symlink-install
+
+    - name: Run tests
+      run: |
+        colcon test
+        colcon test-result --verbose
