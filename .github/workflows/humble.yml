@@ -1,32 +1,20 @@
-name: Humble CI
+name: ROS 2 Humble
 
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - feature/ros2
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-22.04
-    strategy:
-      fail-fast: false
-      matrix:
-        ros_distro: [humble]
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ros:humble
     steps:
-      - name: Checkout repository
+      - name: Create Workspace and checkout code
         uses: actions/checkout@v3
-
-      - name: Setup ROS 2
-        uses: ros-tooling/setup-ros@0.7.1
         with:
-          required-ros-distributions: ${{ matrix.ros_distro }}
+          submodules: recursive
 
-      - name: Build and test
-        uses: ros-tooling/action-ros-ci@0.3.5
-        with:
-          package-name: natnet_ros2
-          target-ros2-distro: ${{ matrix.ros_distro }}
-          skip-tests: true
+      - name: Build
+        run: . /opt/ros/humble/setup.sh && ./.github/workflows/setup.sh && colcon build
