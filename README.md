@@ -1,87 +1,113 @@
-# Mocap ROS2 - NatNet bridge
+# Mocap ROS 2 - NatNet Bridge
 
-MOCAP (NATNET protocol) position publisher in ROS2.
+A ROS 2 package to publish Motion Capture (MoCap) data over the NatNet protocol.
 
-Connects to an IP and port running Motive and publishes all the rigid bodies set in the software, including their IDs. Edit the parameter file if required in the `config` folder.
+This package connects to a machine running OptiTrack Motive and publishes the pose data of all rigid bodies configured in the software, including their IDs. The connection settings can be modified in the parameter file inside the `config` folder.
 
-The package is based on the NatNet SDK sample: [NatNet SDK](https://optitrack.com/support/downloads/developer-tools.html#natnet-sdk).
-This project is based on work derived from the NatNet SDK by OptiTrack. Redistribution or reuse of this code may be restricted. Please contact the original copyright holder.
+The package is based on the NatNet SDK sample: [NatNet SDK](https://optitrack.com/support/downloads/developer-tools.html#natnet-sdk).  
+This project includes work derived from the NatNet SDK by OptiTrack. Redistribution or reuse of this code may be restricted—please contact the original copyright holder.
 
+---
 
 ## Overview
 
-The `mocap_ros2` package provides a ROS2 node for publishing position data using the MOCAP (Motion Capture) NATNET protocol. It connects to a specified IP and port running OptiTrack Motive, publishing position information for all rigid bodies configured in the Motive software, along with their respective IDs.
+The `mocap_ros2` package provides a ROS 2 node that publishes rigid body pose data using the MoCap NatNet protocol. It connects to a given IP and port (where Motive is running) and publishes pose and ID information for all rigid bodies set up in the Motive environment.
+
+---
 
 ## Prerequisites
 
-- ROS2 (Robot Operating System 2)
-- OptiTrack Motive with configured rigid bodies
+- ROS 2 (e.g., Humble or later)
+- OptiTrack Motive (on a Windows machine)
+- Rigid bodies configured in Motive
+
+---
 
 ## Installation
 
-1. Clone this repository to your ROS2 workspace:
+1. Clone the repository and build it in your ROS 2 workspace:
 
     ```bash
-    git clone https://github.com/hpaul360/mocap_ros2.git
-    ```
-
-2. Build the package:
-
-    ```bash
+    mkdir -p mocap_ws/src && cd mocap_ws/src
+    git clone https://github.com/hpaul360/natnet_bridge_ros2.git
+    cd ..
     colcon build --symlink-install
     ```
 
-3. Edit the parameter file in the `config` folder to set the correct IP and port for your OptiTrack Motive setup: mocap_ros2/mocap_client/config/params.yaml
-   ```bash
-   # Dummy parameters for testing
-   dummy_send: false #true. Set it to false to connect to the mocap.
-   send_rate: 100
-   number_of_bodies: 1 # Same values will be sent for all the bodies
-   dummy_x: 0.0
-   dummy_y: 0.0
-   dummy_z: 1.0
-   dummy_qx: 0.0
-   dummy_qy: 0.0
-   dummy_qz: 0.0
-   dummy_qw: 1.0
-   # Connection parametrs
-   server_address: "192.168.0.98"
-   multicast_address: "239.255.42.99"
-   connection_type: 0 #default value: 0. 0 = multicast, 1 = unicast.
-   server_command_port: 1510
-   server_data_port: 1511
-   pub_topic: "/mocap/rigid_bodies"
-   record: false #true. Record flag for Motive software 
-   record_file_name: ""
-   ```
+2. Edit the parameter file to set the correct IP and port for your OptiTrack Motive setup. File:  
+   `mocap_ros2/mocap_client/config/params.yaml`
+
+    ```yaml
+    # Dummy mode (for testing without Motive)
+    dummy_send: false  # Set to true to send dummy data
+    send_rate: 100
+    number_of_bodies: 1
+    dummy_x: 0.0
+    dummy_y: 0.0
+    dummy_z: 1.0
+    dummy_qx: 0.0
+    dummy_qy: 0.0
+    dummy_qz: 0.0
+    dummy_qw: 1.0
+
+    # Network settings
+    server_address: "192.168.0.98"
+    multicast_address: "239.255.42.99"
+    connection_type: 0  # 0 = multicast, 1 = unicast
+    server_command_port: 1510
+    server_data_port: 1511
+
+    # ROS 2 topic and options
+    pub_topic: "/mocap/rigid_bodies"
+    record: false
+    record_file_name: ""
+    ```
+
+---
 
 ## Usage
 
-1. Ensure OptiTrack Motive is running with configured rigid bodies.
-2. Launch the `mocap_ros2` node:
+1. Ensure Motive is running on the Windows PC, and the machine is on the same network.
+2. Launch the node:
 
     ```bash
+    source mocap_ws/install/setup.bash
     ros2 launch mocap_client mocap.launch.py
     ```
 
-3. The node will connect to Motive, publish position data for all rigid bodies, and output their respective IDs.
+3. The node will connect to Motive, publish pose data for all rigid bodies, and output their IDs.
+
+---
 
 ## Configuration
 
-Edit the parameters in the `config/mocap_ros2_params.yaml` file to customize IP, port, and other settings as needed.
+All runtime parameters can be adjusted in:
+`mocap_ros2/mocap_client/config/params.yaml`
+
+
+---
 
 ## Author
+
 - [Hannibal Paul](https://github.com/hpaul360)
-  
+
+---
+
 ## Acknowledgments
 
-The package is based on the NatNet SDK sample provided by OptiTrack.
-This project is based on work derived from the NatNet SDK by OptiTrack. Redistribution or reuse of this code may be restricted. Please contact the original copyright holder.
+This package uses the NatNet SDK provided by OptiTrack.  
+Redistribution or reuse may be restricted. Please consult the [NatNet SDK license](https://optitrack.com/support/downloads/developer-tools.html#natnet-sdk) or contact OptiTrack for permission.
+
+---
 
 ## Issues and Contributions
 
-Report any issues or contribute to the development of this package on [GitHub](https://github.com/hpaul360/mocap_ros2).
+To report issues or contribute to development, visit the [GitHub repository](https://github.com/hpaul360/mocap_ros2).
+
+---
 
 ## Contact
 
-For questions or further assistance, feel free to contact the author [Hannibal Paul](https://hannibalpaul.com/).
+For questions or support, contact the author:  
+[Hannibal Paul](https://hannibalpaul.com/)
+
