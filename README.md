@@ -34,7 +34,7 @@ The `mocap_ros2` package provides a ROS 2 node that publishes rigid body pose da
     colcon build --symlink-install
     ```
 
-2. Edit the parameter file to set the correct IP and port for your OptiTrack Motive setup. File:  
+2. Edit the parameter file to set the correct IP and port for your OptiTrack Motive setup. Important parameter to edit is `server_address` File:  
    `mocap_ros2/mocap_client/config/params.yaml`
 
     ```yaml
@@ -51,8 +51,8 @@ The `mocap_ros2` package provides a ROS 2 node that publishes rigid body pose da
     dummy_qw: 1.0
 
     # Network settings
-    server_address: "192.168.0.98"
-    multicast_address: "239.255.42.99"
+    server_address: "192.168.0.98" # IP of the Windows PC running Motive software
+    multicast_address: "239.255.42.99" 
     connection_type: 0  # 0 = multicast, 1 = unicast
     server_command_port: 1510
     server_data_port: 1511
