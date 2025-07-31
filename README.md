@@ -17,8 +17,8 @@ The `mocap_ros2` package provides a ROS 2 node that publishes rigid body pose da
 
 ## Prerequisites
 
-- ROS 2 (e.g., Humble or later)
-- OptiTrack Motive (on a Windows machine)
+- ROS 2 (Humble)
+- OptiTrack Motive (on a Windows machine) (This package is tested with Motive v1.10.1 and Motive v3.3.1)
 - Rigid bodies configured in Motive
 
 ---
@@ -35,6 +35,7 @@ The `mocap_ros2` package provides a ROS 2 node that publishes rigid body pose da
     ```
 
 2. Edit the parameter file to set the correct IP and port for your OptiTrack Motive setup. Important parameter to edit is `server_address` 
+
 File location:`mocap_ws/src/natnet_bridge_ros2/mocap_client/config/params.yaml`
 
     ```yaml
