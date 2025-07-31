@@ -71,7 +71,7 @@ The `mocap_ros2` package provides a ROS 2 node that publishes rigid body pose da
 2. Launch the node:
 
     ```bash
-    source mocap_ws/install/setup.bash
+    source ~/mocap_ws/install/setup.bash
     ros2 launch mocap_client mocap.launch.py
     ```
 
